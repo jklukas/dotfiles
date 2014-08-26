@@ -1,1 +1,2 @@
-export EDITOR='atom'
+set -o emacs
+export EDITOR='emacs'
