@@ -1,0 +1,2 @@
+;; Allow use of arrow keys
+(setq prelude-guru nil)

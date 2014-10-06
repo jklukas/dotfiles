@@ -26,26 +26,36 @@
                     truncate))
 (erc-update-modules)
 
-(setq erc-keywords '("\\bjklukas\\b"
-                     "\\bjklukas's\\b"
+(setq erc-keywords '(;"\\bjklukas\\b"
+                     ;"\\bjklukas's\\b"
+                     "klukas"
+                     "cthulukas"
+                     "kthulukas"
+                     "xthulukas"
                      "analytics"
-                     "/b/ackend"
-                     "backend"
-                     "clojure"
-                     "clojerks"
+                     "data!"
+                     "!data"
+                     ;"/b/ackend"
+                     ;"backend"
+                     ;"clojure"
+                     ;"clojerks"
                      "storm"
                      "kafka"
                      "redshift"
                      "redshit"
                      "datapipeline"
-                     "cascalog"
+                     ;"cascalog"
                      "machine learning"
-                     "izhmash"
-                     "doppler"
-                     "hypha"
-                     "cerebro"
-                     "coinscope"
-                     "beast"))
+                     "prism"
+                     "skeletor"
+                     "skelt"
+                     ;"izhmash"
+                     ;"doppler"
+                     ;"hypha"
+                     ;"cerebro"
+                     ;"coinscope"
+                     ;"beast"
+                     ))
 
 (autoload 'terminal-notifier-notify "terminal-notify" "terminal-notifier." t)
 
@@ -159,7 +169,7 @@
   (interactive)
   (erc-tls :server    "chat.banksimple.com"
            :port      9999
-           :nick      "jklukas"
+           :nick      "klukas"
            :full-name "Jeff Klukas"
            :password  (get-password 'simple)))
 
@@ -168,6 +178,6 @@
   (interactive)
   (erc-tls :server    "irc.ircrelay.com"
            :port      6697
-           :nick      "jklukas_freenode_default"
+           :nick      "klukas_freenode_default"
            :full-name "Jeff Klukas"
            :password  (get-password 'ircrelay)))

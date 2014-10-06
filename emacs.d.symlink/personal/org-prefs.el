@@ -7,6 +7,11 @@
                                         ; current buffer are used (first) as a
                                         ; refile target
                            (org-agenda-files :maxlevel . 2)))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Notes/tasks.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/Notes/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
 
 ;; Global key bindings
 (global-set-key "\C-cl" 'org-store-link)
