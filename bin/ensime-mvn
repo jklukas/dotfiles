@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import subprocess
+import os
+ 
+def run_process(exe):
+  p = subprocess.Popen(exe, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+  while(True):
+    retcode = p.poll() #returns None while subprocess is running
+    line = p.stdout.readline()
+    yield line
+    if(retcode is not None):
+      break
+ 
+def deps(scope):
+  """Returns set of dependency paths for given Maven scope."""
+  cmd = "mvn dependency:build-classpath -DincludeScope=%s" % scope
+  output_lines = [line.strip() for line in run_process(cmd)]
+  prev_line = ""
+  for line in output_lines:
+    if prev_line.startswith("[INFO] Dependencies classpath:"):
+      return set(line.split(":"))
+    else:
+      prev_line = line
+  return set([])
+ 
+def quote(obj):
+  return "\"" + str(obj) + "\""
+ 
+def mk_string_list(lst):
+  return " ".join([quote(ea) for ea in lst])
+ 
+def get_name():
+  return os.getcwd().split('/')[-1]
+ 
+def get_srcs():
+  return [x[0] for x in os.walk(os.getcwd()) if x[0].endswith("src")]
+ 
+def get_tgts():
+  return [x[0] for x in os.walk(os.getcwd()) if x[0].endswith("target")]
+ 
+print """(
+:name %s
+:package \"com.simple.%s\"
+:source-roots (%s)
+:target (%s)
+ 
+:formatting-prefs (
+  :alignParameters t
+  :alignSingleLineCaseStatements t
+  :compactControlReadability t
+  :doubleIndentClassDeclaration t)
+ 
+:compile-deps (%s)
+:runtime-deps (%s)
+:test-deps (%s)
+)
+""" % (quote(get_name()),
+       get_name(),
+       mk_string_list(get_srcs()),
+       mk_string_list(get_tgts()),
+       mk_string_list(deps("").union(deps("compile"))),
+       mk_string_list(deps("runtime")),
+       mk_string_list(deps("test")))

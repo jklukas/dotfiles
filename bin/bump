@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "missing argument: NEW_VERSION"
+else
+    NEW_VERSION=$1
+    mvn versions:set -DnewVersion="$NEW_VERSION"
+    mvn versions:commit
+    git add .
+fi

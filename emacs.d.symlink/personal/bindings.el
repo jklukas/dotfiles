@@ -15,3 +15,6 @@
 ;; Custom global key bindings
 
 (global-set-key "\C-c#" 'comment-region)
+
+;; Test cases
+(add-hook 'find-file-hook 'enable-test-case-mode-if-test)

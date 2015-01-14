@@ -26,35 +26,25 @@
                     truncate))
 (erc-update-modules)
 
-(setq erc-keywords '(;"\\bjklukas\\b"
-                     ;"\\bjklukas's\\b"
-                     "klukas"
-                     "cthulukas"
-                     "kthulukas"
-                     "xthulukas"
+(setq erc-keywords '("klukas" "cthulukas" "kthulukas" "xthulukas"
                      "analytics"
-                     "data!"
-                     "!data"
-                     ;"/b/ackend"
-                     ;"backend"
-                     ;"clojure"
-                     ;"clojerks"
+                     "dataeng" "data!" "!data"
                      "storm"
                      "kafka"
-                     "redshift"
-                     "redshit"
+                     "redshift" "redshit"
                      "datapipeline"
-                     ;"cascalog"
                      "machine learning"
                      "prism"
-                     "skeletor"
-                     "skelt"
+                     "skeletor" "skelt"
+                     "coinscope" ;"astra" "beast" "carnage" "dazzler"
+                     "horizon"
+                     "Æ" "æ"
+                     ;"/b/ackend" "backend"
+                     ;"clojure" "clojerks"
+                     ;"cascalog"
                      ;"izhmash"
-                     ;"doppler"
                      ;"hypha"
                      ;"cerebro"
-                     ;"coinscope"
-                     ;"beast"
                      ))
 
 (autoload 'terminal-notifier-notify "terminal-notify" "terminal-notifier." t)
@@ -176,8 +166,8 @@
 (defun erc-freenode ()
   "Connect to Freenode."
   (interactive)
-  (erc-tls :server    "irc.ircrelay.com"
+  (erc-tls :server    "chat.freenode.net"
            :port      6697
-           :nick      "klukas_freenode_default"
+           :nick      "klukas"
            :full-name "Jeff Klukas"
-           :password  (get-password 'ircrelay)))
+           :password  (get-password 'freenode)))
