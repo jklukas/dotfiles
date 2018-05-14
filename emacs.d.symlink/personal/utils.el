@@ -17,3 +17,9 @@
   "Open the docs for a Redshift command"
   (interactive "s command: ")
   (browse-url (format "http://docs.aws.amazon.com/redshift/latest/dg/r_%s.html" (upcase command))))
+
+(defun camel-to-snake ()
+  "Turn uppercase characters to lower with a preceding underscore"
+  (interactive)
+  (progn (replace-regexp "\\([a-z]\\)\\([A-Z]\\)" "\\1_\\2" nil (region-beginning)(region-end))
+         (downcase-region (region-beginning)(region-end))))

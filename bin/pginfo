@@ -1,0 +1,11 @@
+#!/bin/sh
+
+STACK=$1
+SERVICE=$(echo $STACK | cut -d\- -f1)
+ENVIRON=$(echo $STACK | cut -d\- -f2)
+
+printf "\033c"
+
+ssh postgres-white.$SERVICE.$ENVIRON.banksimple.com sudo /simple/postgresql/current/bin/info
+echo ""
+ssh postgres-black.$SERVICE.$ENVIRON.banksimple.com sudo /simple/postgresql/current/bin/info

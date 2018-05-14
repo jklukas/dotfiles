@@ -1,0 +1,13 @@
+#!/bin/sh
+# This is a Bourne shell script that expands
+# scala imports.
+sed '
+    /import .*,.*,.*,.*,.*/ {
+        s/{/{\
+  /
+        s/}/\
+}/
+        s/, /,\
+  /g
+        }
+'

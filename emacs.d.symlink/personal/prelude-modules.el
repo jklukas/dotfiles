@@ -33,3 +33,5 @@
 ;; (require 'prelude-scss)
 ;; (require 'prelude-web) ;; Emacs mode for web templates
 (require 'prelude-xml)
+
+(projectile-global-mode -1)

@@ -38,3 +38,6 @@ do
 done
 
 unset config_files
+
+# added by travis gem
+[ -f /Users/jeffklukas/.travis/travis.sh ] && source /Users/jeffklukas/.travis/travis.sh

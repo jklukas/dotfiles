@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## First arg is the service to query.
+SERVICE=$1
+
+## Second arg is the environment (dev or prod).
+ENV=${2:-prod}
+
+## Third arg is the number of lines of history
+NLINES=${3:-100}
+
+dig +short app.${SERVICE}.${ENV}.banksimple.com | \
+    xargs -I{} -P9 ssh -o StrictHostKeyChecking=no {} \
+          sudo tail -n $NLINES -f /simple/${SERVICE}/logs/${SERVICE}.log

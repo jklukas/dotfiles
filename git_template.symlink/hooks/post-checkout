@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Check if this is a project on Simple's GitHub Enterprise instance
+## and use work email if so.
+
+git remote --verbose | grep --silent banksimple.com && \
+    git config user.email 'klukas@simple.com' || \
+    true

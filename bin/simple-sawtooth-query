@@ -1,0 +1,14 @@
+#!/bin/bash
+
+env="$1"
+service="$2"
+file="$3"
+
+query() {
+    local service="$1"
+    local env="$2"
+    cmd="sudo -u services psql \"postgresql://app.sawtooth-$service.$env.banksimple.com@db-master.$service.$env.banksimple.com/$service?sslmode=require&sslcert=/simple/sawtooth-$service/service-keys/app.sawtooth-$service.$env.banksimple.com.crt&sslkey=/simple/sawtooth-$service/service-keys/app.sawtooth-$service.$env.banksimple.com.key&sslrootcert=/simple/sawtooth-$service/service-keys/root.crt\" -f-"
+    ssh app.sawtooth-$service.$env $cmd
+}
+
+cat $file | query $service $env || echo $file | query $service $env
